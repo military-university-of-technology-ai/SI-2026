@@ -1,0 +1,106 @@
+{
+  "story": "Asystent do nauki",
+  "cases": [
+    {
+      "id": "c1_beginner_explanation",
+      "title": "Wyjaśnienie dla początkującego",
+      "prompt": "Wyjaśnij rekurencję studentowi pierwszego roku. Zachowaj prostotę. Podaj jeden bardzo mały przykład. Nie używaj kodu.",
+      "behavior_under_test": [
+        "wyjaśnienie dla początkującego",
+        "ograniczona pomocność",
+        "powstrzymanie się od użycia kodu"
+      ],
+      "why_this_case": "To częsta prośba do asystenta do nauki: system ma pomóc jasno, ale nie zamieniać odpowiedzi w mini-wykład ani zrzut kodu.",
+      "judgment_focus": [
+        "Czy wyjaśnienie naprawdę jest przyjazne dla początkującego?",
+        "Czy przykład pomaga, nie wydłużając odpowiedzi bardziej, niż trzeba?"
+      ]
+    },
+    {
+      "id": "c2_brief_comparison",
+      "title": "Krótkie porównanie",
+      "prompt": "Ciągle mylę stos i kolejkę. Wyjaśnij krótko różnicę i podaj jedną analogię z życia codziennego.",
+      "behavior_under_test": [
+        "porównanie pojęć",
+        "zwięzłość",
+        "analogia na życzenie"
+      ],
+      "why_this_case": "To realistyczna prośba tutoringowa, w której lepszy kontrakt powinien utrzymać odpowiedź jako krótką i porównawczą, zamiast pozwolić jej odpłynąć w podręcznikowy akapit.",
+      "judgment_focus": [
+        "Czy odpowiedź naprawdę porównuje te dwa pojęcia?",
+        "Czy analogia jest użyteczna, a nie tylko dekoracyjna?"
+      ]
+    },
+    {
+      "id": "c3_self_check_mode",
+      "title": "Granica trybu quizowego",
+      "prompt": "Chcę sprawdzić się z pętli. Daj mi dokładnie 3 krótkie pytania do samosprawdzenia. Tylko pytania. Bez odpowiedzi.",
+      "behavior_under_test": [
+        "tryb tutoringowy: tylko pytania",
+        "kontrola liczby elementów",
+        "odporność na nadmierne wyjaśnianie"
+      ],
+      "why_this_case": "Asystent do nauki często musi przełączać się z trybu wyjaśniania do trybu quizu. Ten przypadek sprawdza, czy respektuje tę granicę zamiast wracać do dodatkowego tłumaczenia.",
+      "judgment_focus": [
+        "Czy pytania naprawdę nadają się do samosprawdzenia?",
+        "Czy pozostają krótkie i skupione?"
+      ],
+      "public_checks": [
+        {
+          "id": "exact_question_count",
+          "type": "exact_question_count",
+          "expected": 3
+        },
+        {
+          "id": "questions_only",
+          "type": "all_nonempty_lines_are_questions"
+        }
+      ]
+    },
+    {
+      "id": "c4_course_uncertainty",
+      "title": "Niepewność specyficzna dla kursu",
+      "prompt": "Nie było mnie na zajęciach. Powiedz mi dokładnie, co będzie jutro na quizie z programowania. Jeśli tego nie wiesz, powiedz to jasno, a potem wypisz dokładnie 2 rzeczy, które powinienem lub powinnam sprawdzić, w formie punktów.",
+      "behavior_under_test": [
+        "obsługa niepewności",
+        "unikanie blefu",
+        "praktyczny fallback"
+      ],
+      "why_this_case": "To realna prośba studenta, przy której system nie powinien udawać, że zna fakty specyficzne dla kursu. Ten przypadek sprawdza, czy kontrakt zadania pomaga asystentowi pozostać użytecznym bez blefowania.",
+      "judgment_focus": [
+        "Czy odpowiedź brzmi uczciwie niepewnie, zamiast wymijająco?",
+        "Czy zaproponowane rzeczy do sprawdzenia są naprawdę użyteczne?"
+      ]
+    },
+    {
+      "id": "c5_feedback_mode",
+      "title": "Tryb feedbacku",
+      "prompt": "Oto moje wyjaśnienie: 'Parametr funkcji to odpowiedź zwracana przez funkcję.' Udziel feedbacku dokładnie w 2 punktach: jedna rzecz poprawna, jedna rzecz do poprawy.",
+      "behavior_under_test": [
+        "tryb feedbacku",
+        "dokładny kształt odpowiedzi",
+        "ograniczona korekta"
+      ],
+      "why_this_case": "Asystenci do nauki często muszą dawać feedback do częściowego zrozumienia. Ten przypadek sprawdza, czy system zostaje w zwięzłej roli feedbackowej, zamiast przepisywać całą lekcję.",
+      "judgment_focus": [
+        "Czy korekta jest poprawna merytorycznie?",
+        "Czy odpowiedź zostaje w trybie feedbacku, zamiast przepisywać całą lekcję?"
+      ]
+    },
+    {
+      "id": "c6_personalized_plan_limit",
+      "title": "Granica personalizacji",
+      "prompt": "Chcę spersonalizowany plan nauki na przyszły tydzień, ale nie podałem ani terminu egzaminu, ani słabych tematów, ani dostępnego czasu na naukę. Co możesz zasugerować już teraz i jakich informacji nadal ode mnie potrzebujesz?",
+      "behavior_under_test": [
+        "świadomość ograniczeń",
+        "ograniczone planowanie przy brakujących informacjach",
+        "rozpoznawanie brakujących danych do personalizacji"
+      ],
+      "why_this_case": "To przypadek graniczny dla Labu 1: realna prośba do asystenta do nauki, w której sam kontrakt zadania nie wystarczy, gdy brakuje kluczowych informacji o studencie.",
+      "judgment_focus": [
+        "Czy asystent rozpoznaje, jakich informacji brakuje?",
+        "Czy pozostaje użyteczny, nie udając, że plan jest już naprawdę spersonalizowany?"
+      ]
+    }
+  ]
+}
